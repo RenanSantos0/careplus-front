@@ -1,14 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Inicializa os ícones do pacote Lucide
   lucide.createIcons();
 
-  // 2. Coloca a data atual dinamicamente
   const dateElement = document.getElementById('data-atual');
   const today = new Date();
   const options = { weekday: 'long', day: 'numeric', month: 'long' };
   dateElement.textContent = today.toLocaleDateString('pt-BR', options);
 
-  // 3. Sistema de partículas (Extraído do React DashboardLayout)
   const PARTICLES = [
     { id: 0,  left: '8%',  delay: '0s',    dur: '14s' },
     { id: 1,  left: '18%', delay: '2.1s',  dur: '11s' },
@@ -26,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const particlesContainer = document.getElementById('particles-container');
 
-  // Adiciona as divs de partículas de forma dinâmica
   PARTICLES.forEach(p => {
     const particle = document.createElement('div');
     particle.className = 'particle';

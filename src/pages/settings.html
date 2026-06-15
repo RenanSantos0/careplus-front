@@ -151,10 +151,8 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Inicializa os ícones do Lucide
       lucide.createIcons();
 
-      // 2. Injeta as partículas dinâmicas em background
       const PARTICLES = [
         { id: 0,  left: '8%',  delay: '0s',    dur: '14s' },
         { id: 1,  left: '18%', delay: '2.1s',  dur: '11s' },
@@ -176,23 +174,16 @@
       });
     });
 
-    // 3. Lógica do Simulador Vitals Weather (Muda os CSS root variables via classe do body)
     function alterarEstadoClimatico(novoEstado) {
       const body = document.getElementById('app-body');
       
-      // Limpa as classes anteriores do Vitals Weather
       body.classList.remove('vw-excellent', 'vw-good', 'vw-warning', 'vw-weak', 'vw-critical');
-      
-      // Adiciona a nova classe de estado correspondente
       body.className = `app-bg vw-${novoEstado} relative min-h-[100dvh] overflow-x-hidden`;
-      
-      // Recarrega os ícones caso precisem atualizar cores de bordas do Lucide
       lucide.createIcons();
       
       mostrarToast(`Clima Vital alterado para: ${novoEstado.toUpperCase()}`);
     }
 
-    // 4. Lógica do Toast Customizado
     let toastTimeout;
     function mostrarToast(mensagemTexto) {
       const toast = document.getElementById('toastNotificacao');
