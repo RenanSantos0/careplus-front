@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarePlus+ V2 — Ajustes</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link rel="stylesheet" href="/style.css">
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body id="app-body" class="app-bg vw-excellent relative min-h-[100dvh] overflow-x-hidden">
+
+  <div aria-hidden="true" class="fixed inset-0 pointer-events-none z-0" id="particles-container">
+    <div class="aurora-band b1"></div>
+    <div class="aurora-band b2"></div>
+    <div class="aurora-band b3"></div>
+  </div>
+
+  <main class="relative z-10 min-h-[100dvh] py-[clamp(24px,5vw,56px)] px-[clamp(16px,5vw,48px)] pb-32 max-w-[720px] mx-auto">
+    
+    <header class="mb-6 mt-4">
+      <div class="text-[0.6rem] font-bold tracking-[0.22em] uppercase text-[var(--accent)] mb-1">
+        Painel de Configurações
+      </div>
+      <h1 class="text-[clamp(1.6rem,5vw,2.2rem)] font-extrabold text-[var(--text-primary)] tracking-[-0.03em] leading-[1.1]">
+        Ajustes
+      </h1>
+    </header>
+
+    <div class="grid gap-4 grid-cols-1">
+      
+      <section class="glass rounded-xl p-5 border border-[var(--card-border)] flex flex-col sm:flex-row items-center gap-4">
+        <div class="relative">
+          <div class="w-16 h-16 rounded-full border-2 border-[var(--accent)] overflow-hidden viz-glow">
+            <img src="https://ui-avatars.com/api/?name=Marcos&background=random" class="w-full h-full object-cover" alt="Avatar">
+          </div>
+          <button class="absolute bottom-0 right-0 w-5 h-5 bg-[var(--accent)] rounded-full flex items-center justify-center text-[var(--bg-b)] shadow-md">
+            <i data-lucide="camera" width="10"></i>
+          </button>
+        </div>
+        <div class="text-center sm:text-left flex-grow">
+          <h2 class="font-bold text-lg text-[var(--text-primary)]">Marcos Silva</h2>
+          <p class="text-xs text-[var(--text-muted)]">Nível 4 · Integrante CarePlus+</p>
+        </div>
+        <div class="glass px-4 py-2 rounded-lg text-center border border-[var(--card-border)] shrink-0 min-w-[90px]">
+          <div class="font-display text-xl text-[var(--accent)] leading-none">100</div>
+          <span class="text-[0.55rem] font-bold uppercase tracking-wider text-[var(--text-muted)]">Pontos</span>
+        </div>
+      </section>
+
+      <section class="glass rounded-xl p-5 border border-[var(--card-border)]">
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="w-7 h-7 rounded-lg flex items-center justify-center accent-bg text-[var(--accent)]">
+            <i data-lucide="sliders" width="16"></i>
+          </div>
+          <h3 class="font-bold text-sm text-[var(--text-primary)] uppercase tracking-wider">Simulador de Estado (Vitals Weather)</h3>
+        </div>
+        <p class="text-xs text-[var(--text-muted)] mb-4 leading-relaxed">
+          Altere o estado de telemetria abaixo para testar a reatividade de cores, partículas e atmosfera do ecossistema do aplicativo em tempo real.
+        </p>
+        <div class="relative">
+          <select id="weather-selector" onchange="alterarEstadoClimatico(this.value)" 
+                  class="w-full glass border border-[var(--card-border)] rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] appearance-none cursor-pointer font-semibold">
+            <option value="excellent" selected>⚡ Excelente (Fusão Azul - Padrão)</option>
+            <option value="good">🟢 Bom (Verde Folha)</option>
+            <option value="warning">🟠 Alerta / Normal (Âmbar / Névoa)</option>
+            <option value="weak">🟣 Fraco (Poeira Violeta)</option>
+            <option value="critical">🔴 Crítico (Chuva de Sangue)</option>
+          </select>
+          <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-[var(--text-muted)]">
+            <i data-lucide="chevron-down" width="16"></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="glass rounded-xl p-5 border border-[var(--card-border)]">
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="w-7 h-7 rounded-lg flex items-center justify-center accent-bg text-[var(--accent)]">
+            <i data-lucide="smartphone" width="16"></i>
+          </div>
+          <h3 class="font-bold text-sm text-[var(--text-primary)] uppercase tracking-wider">Dispositivos & Wearables</h3>
+        </div>
+        
+        <div class="flex justify-between items-center py-3 border-b border-[var(--card-border)]">
+          <div>
+            <div class="text-sm font-bold text-[var(--text-primary)]">Sincronização via MQTT</div>
+            <div class="text-[0.7rem] text-[var(--text-muted)] mt-0.5">Captura contínua de batimentos, SpO₂ e temperatura.</div>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked onchange="mostrarToast('Sincronização MQTT atualizada')" class="sr-only peer">
+            <div class="w-9 h-5 bg-[rgba(255,255,255,0.1)] rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[var(--accent)]"></div>
+          </label>
+        </div>
+
+        <div class="flex justify-between items-center py-3">
+          <div>
+            <div class="text-sm font-bold text-[var(--text-primary)]">Notificações do Mascote</div>
+            <div class="text-[0.7rem] text-[var(--text-muted)] mt-0.5">Permitir que o Panda envie alertas de hidratação e metas.</div>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" onchange="mostrarToast('Preferência de notificações salva')" class="sr-only peer">
+            <div class="w-9 h-5 bg-[rgba(255,255,255,0.1)] rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[var(--accent)]"></div>
+          </label>
+        </div>
+      </section>
+
+      <button onclick="mostrarToast('Sessão encerrada (Simulação)')" 
+              class="w-full glass py-3 rounded-xl border border-red-500/20 text-red-400 font-bold text-sm hover:bg-red-500/10 transition-colors flex items-center justify-center gap-2">
+        <i data-lucide="log-out" width="16"></i> Sair da Conta
+      </button>
+
+    </div>
+  </main>
+
+  <nav class="fixed bottom-0 left-0 w-full glass border-t border-[var(--card-border)] z-50 pt-2 pb-[calc(env(safe-area-inset-bottom)+8px)]">
+    <div class="max-w-[720px] mx-auto flex justify-around items-center h-14 px-4">
+      <a href="/index.html" class="flex flex-col items-center gap-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+        <i data-lucide="home" width="22"></i>
+        <span class="text-[0.6rem] font-bold">Início</span>
+      </a>
+      <a href="rewards.html" class="flex flex-col items-center gap-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+        <i data-lucide="gift" width="22"></i>
+        <span class="text-[0.6rem] font-bold">Prêmios</span>
+      </a>
+      
+      <a href="#" class="flex flex-col items-center gap-1 text-[var(--accent)] relative">
+        <div class="absolute -top-3 w-1 h-1 rounded-full bg-[var(--accent)]" style="box-shadow: 0 0 8px var(--accent-glow)"></div>
+        <i data-lucide="settings" width="22"></i>
+        <span class="text-[0.6rem] font-bold">Ajustes</span>
+      </a>
+    </div>
+  </nav>
+
+  <div id="toastNotificacao" class="fixed bottom-24 left-1/2 -translate-x-1/2 glass border border-[var(--accent)] px-5 py-3.5 rounded-2xl flex items-center gap-3 transition-all duration-500 opacity-0 translate-y-6 pointer-events-none z-[100] shadow-[0_8px_30px_var(--accent-glow)] w-[90%] max-w-[400px]">
+    <div class="w-8 h-8 rounded-full accent-bg flex items-center justify-center shrink-0">
+      <i data-lucide="check" class="text-[var(--accent)] w-5 h-5"></i>
+    </div>
+    <div>
+      <div class="text-[0.65rem] font-bold uppercase tracking-wider text-[var(--accent)] mb-0.5">Configurações</div>
+      <div class="text-sm font-semibold text-[var(--text-primary)] leading-tight" id="toastMensagem">Alteração salva!</div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Inicializa os ícones do Lucide
+      lucide.createIcons();
+
+      // 2. Injeta as partículas dinâmicas em background
+      const PARTICLES = [
+        { id: 0,  left: '8%',  delay: '0s',    dur: '14s' },
+        { id: 1,  left: '18%', delay: '2.1s',  dur: '11s' },
+        { id: 2,  left: '29%', delay: '4.5s',  dur: '16s' },
+        { id: 3,  left: '41%', delay: '1.3s',  dur: '13s' },
+        { id: 4,  left: '53%', delay: '6.2s',  dur: '15s' },
+        { id: 5,  left: '64%', delay: '3.7s',  dur: '12s' }
+      ];
+
+      const particlesContainer = document.getElementById('particles-container');
+      PARTICLES.forEach(p => {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = p.left;
+        particle.style.bottom = '0';
+        particle.style.setProperty('--delay', p.delay);
+        particle.style.setProperty('--dur', p.dur);
+        particlesContainer.appendChild(particle);
+      });
+    });
+
+    // 3. Lógica do Simulador Vitals Weather (Muda os CSS root variables via classe do body)
+    function alterarEstadoClimatico(novoEstado) {
+      const body = document.getElementById('app-body');
+      
+      // Limpa as classes anteriores do Vitals Weather
+      body.classList.remove('vw-excellent', 'vw-good', 'vw-warning', 'vw-weak', 'vw-critical');
+      
+      // Adiciona a nova classe de estado correspondente
+      body.className = `app-bg vw-${novoEstado} relative min-h-[100dvh] overflow-x-hidden`;
+      
+      // Recarrega os ícones caso precisem atualizar cores de bordas do Lucide
+      lucide.createIcons();
+      
+      mostrarToast(`Clima Vital alterado para: ${novoEstado.toUpperCase()}`);
+    }
+
+    // 4. Lógica do Toast Customizado
+    let toastTimeout;
+    function mostrarToast(mensagemTexto) {
+      const toast = document.getElementById('toastNotificacao');
+      const mensagem = document.getElementById('toastMensagem');
+      
+      mensagem.textContent = mensagemTexto;
+      
+      clearTimeout(toastTimeout);
+      
+      toast.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

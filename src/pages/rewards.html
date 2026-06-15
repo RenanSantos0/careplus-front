@@ -3,198 +3,258 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CarePlus+ — Recompensas</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    :root { --bs-success: #00BFDF; --bs-success-rgb: 0,191,223; }
-
-    .sidebar { width: 210px; min-height: 100vh; background: #0B1829; position: sticky; top: 0; flex-shrink: 0; }
-    .sidebar .nav-link { color: rgba(255,255,255,0.5); font-size: 0.875rem; border-radius: 8px; }
-    .sidebar .nav-link:hover  { color: #fff; background: rgba(255,255,255,0.06); }
-    .sidebar .nav-link.active { color: #fff; background: rgba(0,191,223,0.15); font-weight: 600; }
-
-    .bottom-nav { background: #0B1829; }
-    .bottom-nav .nav-link { color: rgba(255,255,255,0.45); font-size: 0.65rem; }
-    .bottom-nav .nav-link.active { color: #00BFDF; }
-
-    .reward-card { transition: transform 0.15s; }
-    .reward-card:hover { transform: translateY(-2px); }
-  </style>
+  <title>CarePlus+ V2 — Recompensas</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link rel="stylesheet" href="/style.css">
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="bg-light">
-<div class="d-flex">
+<body class="app-bg vw-excellent relative min-h-[100dvh] overflow-x-hidden">
 
-  <!-- SIDEBAR — d-none d-lg-flex: só aparece no desktop -->
-  <aside class="sidebar d-none d-lg-flex flex-column p-3 gap-3">
+  <div aria-hidden="true" class="fixed inset-0 pointer-events-none z-0" id="particles-container">
+    <div class="aurora-band b1"></div>
+    <div class="aurora-band b2"></div>
+    <div class="aurora-band b3"></div>
+  </div>
 
-    <div class="text-white fw-bold fs-5 px-2 pt-2 pb-2 border-bottom border-secondary">
-      Care<span style="color:#00BFDF">Plus+</span>
-    </div>
+  <div class="fixed top-4 right-4 z-50">
+    <button class="w-10 h-10 rounded-full border border-[var(--card-border)] overflow-hidden glass shadow-lg">
+      <img src="https://ui-avatars.com/api/?name=Marcos&background=random" class="w-full h-full object-cover" alt="Perfil">
+    </button>
+  </div>
 
-    <ul class="nav flex-column gap-1 flex-grow-1">
-      <li><a href="/index.html" class="nav-link d-flex align-items-center gap-2">
-        <img src="../assets/svgs/home.svg" width="16" height="16" alt=""> Início
-      </a></li>
-      <li><a href="#" class="nav-link active d-flex align-items-center gap-2">
-        <img src="../assets/svgs/rewards.svg" width="16" height="16" alt=""> Recompensas
-      </a></li>
-      <li><a href="#" class="nav-link d-flex align-items-center gap-2">
-        <img src="../assets/svgs/settings.svg" width="16" height="16" alt=""> Ajustes
-      </a></li>
-    </ul>
-
-    <div class="d-flex align-items-center gap-2 border-top border-secondary pt-3">
-      <img src="../assets/imgs/thispersondoesnotexist 1.png"
-           class="rounded-circle" width="32" height="32" style="object-fit:cover" alt="Avatar">
-      <div>
-        <div class="text-white small fw-semibold">Marcos</div>
-        <div class="text-success small">100 pts</div>
+  <main class="relative z-10 min-h-[100dvh] py-[clamp(24px,5vw,56px)] px-[clamp(16px,5vw,48px)] pb-32 max-w-[720px] mx-auto">
+    
+    <header class="mb-8 mt-4 text-center sm:text-left">
+      <div class="text-[0.6rem] font-bold tracking-[0.22em] uppercase text-[var(--accent)] mb-1">
+        Benefícios Exclusivos
       </div>
-    </div>
+      <h1 class="text-[clamp(1.6rem,5vw,2.2rem)] font-extrabold text-[var(--text-primary)] tracking-[-0.03em] leading-[1.1] mb-3">
+        Catálogo de Recompensas
+      </h1>
+      
+      <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full border border-[var(--card-border)] shadow-lg">
+        <i data-lucide="star" class="text-[var(--accent)]" width="16"></i>
+        <span class="text-sm font-semibold text-[var(--text-muted)]">
+          Seu Saldo: <span class="text-[var(--text-primary)] font-bold text-base ml-1">100 pts</span>
+        </span>
+      </div>
+    </header>
 
-  </aside>
+    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
 
-  <!-- MAIN -->
-  <main class="flex-grow-1 p-4 pb-5 pb-lg-4">
-
-    <h1 class="fs-4 fw-bold mb-1">Catálogo de Recompensas</h1>
-    <p class="text-secondary small mb-4">Troque seus pontos por benefícios exclusivos.</p>
-
-    <!-- row g-3: grid Bootstrap — col-12 mobile, col-md-6 tablet, col-lg-4 desktop -->
-    <div class="row g-3">
-
-      <div class="col-12 col-md-6 col-lg-4">
-        <article class="card reward-card border-0 shadow-sm h-100">
-          <div class="card-body p-4 d-flex flex-column gap-2">
-            <div class="bg-success bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center mb-1"
-                 style="width:44px; height:44px;">
-              <img src="../assets/svgs/rewards.svg" width="20" height="20" alt="">
-            </div>
-            <!-- badge: categoria usando componente Bootstrap -->
-            <span class="badge bg-success bg-opacity-10 text-success" style="width:fit-content;">Bem-estar</span>
-            <h3 class="fw-bold mb-0" style="font-size:0.95rem;">Garrafa térmica CarePlus</h3>
-            <div class="mt-auto d-flex justify-content-between align-items-center pt-2">
-              <span class="fw-bold">250 pts</span>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill">Sem saldo</button>
+      <article class="glass rounded-xl p-5 flex flex-col gap-3 relative overflow-hidden group hover:border-[var(--accent-soft)] transition-colors">
+        <div class="flex justify-between items-start">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-[#00BFDF]/10 text-[#00BFDF]">
+            <i data-lucide="coffee" width="20"></i>
+          </div>
+          <span class="text-[0.65rem] font-bold px-2.5 py-1 rounded-full bg-[#00BFDF]/10 text-[#00BFDF] border border-[#00BFDF]/20">
+            Bem-estar
+          </span>
+        </div>
+        <h3 class="font-bold text-[1.05rem] leading-tight text-[var(--text-primary)] mt-1">Garrafa térmica CarePlus</h3>
+        
+        <div class="mt-auto flex justify-between items-center pt-4 border-t border-[var(--card-border)]">
+          <div class="flex flex-col">
+            <span class="text-[0.55rem] text-[var(--text-muted)] uppercase tracking-wider font-bold">Valor</span>
+            <div class="font-display text-2xl text-[var(--text-primary)] leading-none mt-0.5">
+              250 <span class="text-[0.65rem] font-sans font-semibold text-[var(--text-muted)]">pts</span>
             </div>
           </div>
-        </article>
-      </div>
+          <button disabled class="px-4 py-2 rounded-full text-xs font-bold bg-[rgba(255,255,255,0.05)] text-[var(--text-muted)] border border-[var(--card-border)] cursor-not-allowed">
+            Sem saldo
+          </button>
+        </div>
+      </article>
 
-      <div class="col-12 col-md-6 col-lg-4">
-        <article class="card reward-card border-0 shadow-sm h-100">
-          <div class="card-body p-4 d-flex flex-column gap-2">
-            <div class="rounded-3 d-flex align-items-center justify-content-center mb-1"
-                 style="width:44px; height:44px; background:rgba(168,85,247,.1);">
-              <img src="../assets/svgs/medi.svg" width="20" height="20" alt="">
-            </div>
-            <span class="badge" style="width:fit-content; background:rgba(168,85,247,.15); color:#A855F7;">Mental</span>
-            <h3 class="fw-bold mb-0" style="font-size:0.95rem;">1 mês de meditação guiada</h3>
-            <div class="mt-auto d-flex justify-content-between align-items-center pt-2">
-              <span class="fw-bold">180 pts</span>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill">Sem saldo</button>
+      <article class="glass rounded-xl p-5 flex flex-col gap-3 relative overflow-hidden group hover:border-[var(--accent-soft)] transition-colors">
+        <div class="flex justify-between items-start">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-[#A855F7]/10 text-[#A855F7]">
+            <i data-lucide="brain" width="20"></i>
+          </div>
+          <span class="text-[0.65rem] font-bold px-2.5 py-1 rounded-full bg-[#A855F7]/10 text-[#A855F7] border border-[#A855F7]/20">
+            Mental
+          </span>
+        </div>
+        <h3 class="font-bold text-[1.05rem] leading-tight text-[var(--text-primary)] mt-1">1 mês de meditação guiada</h3>
+        
+        <div class="mt-auto flex justify-between items-center pt-4 border-t border-[var(--card-border)]">
+          <div class="flex flex-col">
+            <span class="text-[0.55rem] text-[var(--text-muted)] uppercase tracking-wider font-bold">Valor</span>
+            <div class="font-display text-2xl text-[var(--text-primary)] leading-none mt-0.5">
+              180 <span class="text-[0.65rem] font-sans font-semibold text-[var(--text-muted)]">pts</span>
             </div>
           </div>
-        </article>
-      </div>
+          <button disabled class="px-4 py-2 rounded-full text-xs font-bold bg-[rgba(255,255,255,0.05)] text-[var(--text-muted)] border border-[var(--card-border)] cursor-not-allowed">
+            Sem saldo
+          </button>
+        </div>
+      </article>
 
-      <div class="col-12 col-md-6 col-lg-4">
-        <article class="card reward-card border-0 shadow-sm h-100">
-          <div class="card-body p-4 d-flex flex-column gap-2">
-            <div class="rounded-3 d-flex align-items-center justify-content-center mb-1"
-                 style="width:44px; height:44px; background:rgba(16,185,129,.1);">
-              <img src="../assets/svgs/run.svg" width="20" height="20" alt="">
-            </div>
-            <span class="badge" style="width:fit-content; background:rgba(16,185,129,.15); color:#10B981;">Saúde</span>
-            <h3 class="fw-bold mb-0" style="font-size:0.95rem;">Consulta nutricional online</h3>
-            <div class="mt-auto d-flex justify-content-between align-items-center pt-2">
-              <span class="fw-bold">500 pts</span>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill">Sem saldo</button>
+      <article class="glass rounded-xl p-5 flex flex-col gap-3 relative overflow-hidden group hover:border-[var(--accent-soft)] transition-colors">
+        <div class="flex justify-between items-start">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-[#10B981]/10 text-[#10B981]">
+            <i data-lucide="apple" width="20"></i>
+          </div>
+          <span class="text-[0.65rem] font-bold px-2.5 py-1 rounded-full bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/20">
+            Saúde
+          </span>
+        </div>
+        <h3 class="font-bold text-[1.05rem] leading-tight text-[var(--text-primary)] mt-1">Consulta nutricional online</h3>
+        
+        <div class="mt-auto flex justify-between items-center pt-4 border-t border-[var(--card-border)]">
+          <div class="flex flex-col">
+            <span class="text-[0.55rem] text-[var(--text-muted)] uppercase tracking-wider font-bold">Valor</span>
+            <div class="font-display text-2xl text-[var(--text-primary)] leading-none mt-0.5">
+              500 <span class="text-[0.65rem] font-sans font-semibold text-[var(--text-muted)]">pts</span>
             </div>
           </div>
-        </article>
-      </div>
+          <button disabled class="px-4 py-2 rounded-full text-xs font-bold bg-[rgba(255,255,255,0.05)] text-[var(--text-muted)] border border-[var(--card-border)] cursor-not-allowed">
+            Sem saldo
+          </button>
+        </div>
+      </article>
 
-      <div class="col-12 col-md-6 col-lg-4">
-        <article class="card reward-card border-0 shadow-sm h-100">
-          <div class="card-body p-4 d-flex flex-column gap-2">
-            <div class="rounded-3 d-flex align-items-center justify-content-center mb-1"
-                 style="width:44px; height:44px; background:rgba(249,115,22,.1);">
-              <img src="../assets/svgs/spark.svg" width="20" height="20" alt="">
-            </div>
-            <span class="badge" style="width:fit-content; background:rgba(249,115,22,.15); color:#F97316;">Desconto</span>
-            <h3 class="fw-bold mb-0" style="font-size:0.95rem;">Voucher R$30 farmácia parceira</h3>
-            <div class="mt-auto d-flex justify-content-between align-items-center pt-2">
-              <span class="fw-bold">400 pts</span>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill">Sem saldo</button>
+      <article class="glass rounded-xl p-5 flex flex-col gap-3 relative overflow-hidden group hover:border-[var(--accent-soft)] transition-colors">
+        <div class="flex justify-between items-start">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-[#F97316]/10 text-[#F97316]">
+            <i data-lucide="tag" width="20"></i>
+          </div>
+          <span class="text-[0.65rem] font-bold px-2.5 py-1 rounded-full bg-[#F97316]/10 text-[#F97316] border border-[#F97316]/20">
+            Desconto
+          </span>
+        </div>
+        <h3 class="font-bold text-[1.05rem] leading-tight text-[var(--text-primary)] mt-1">Voucher R$30 farmácia parceira</h3>
+        
+        <div class="mt-auto flex justify-between items-center pt-4 border-t border-[var(--card-border)]">
+          <div class="flex flex-col">
+            <span class="text-[0.55rem] text-[var(--text-muted)] uppercase tracking-wider font-bold">Valor</span>
+            <div class="font-display text-2xl text-[var(--text-primary)] leading-none mt-0.5">
+              400 <span class="text-[0.65rem] font-sans font-semibold text-[var(--text-muted)]">pts</span>
             </div>
           </div>
-        </article>
-      </div>
+          <button disabled class="px-4 py-2 rounded-full text-xs font-bold bg-[rgba(255,255,255,0.05)] text-[var(--text-muted)] border border-[var(--card-border)] cursor-not-allowed">
+            Sem saldo
+          </button>
+        </div>
+      </article>
 
-      <div class="col-12 col-md-6 col-lg-4">
-        <article class="card reward-card border-0 shadow-sm h-100">
-          <div class="card-body p-4 d-flex flex-column gap-2">
-            <div class="rounded-3 d-flex align-items-center justify-content-center mb-1"
-                 style="width:44px; height:44px; background:rgba(245,158,11,.1);">
-              <img src="../assets/svgs/Vector.svg" width="20" height="20" alt="">
-            </div>
-            <span class="badge" style="width:fit-content; background:rgba(245,158,11,.15); color:#F59E0B;">Fitness</span>
-            <h3 class="fw-bold mb-0" style="font-size:0.95rem;">Kit camiseta + faixa esportiva</h3>
-            <div class="mt-auto d-flex justify-content-between align-items-center pt-2">
-              <span class="fw-bold">320 pts</span>
-              <!-- onclick: aciona o Toast Bootstrap com o nome da recompensa -->
-              <button class="btn btn-success btn-sm rounded-pill"
-                      onclick="mostrarToast('Kit camiseta + faixa esportiva')">
-                Resgatar
-              </button>
+      <article class="glass rounded-xl p-5 flex flex-col gap-3 relative overflow-hidden group hover:border-[var(--accent-soft)] transition-colors border-[var(--accent-reward)]/30">
+        <div class="absolute -top-10 -right-10 w-32 h-32 bg-[var(--accent-reward)] rounded-full blur-[50px] opacity-20 pointer-events-none"></div>
+
+        <div class="flex justify-between items-start relative z-10">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-[#F59E0B]/10 text-[#F59E0B]">
+            <i data-lucide="shirt" width="20"></i>
+          </div>
+          <span class="text-[0.65rem] font-bold px-2.5 py-1 rounded-full bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+            Fitness
+          </span>
+        </div>
+        <h3 class="font-bold text-[1.05rem] leading-tight text-[var(--text-primary)] mt-1 relative z-10">Kit camiseta + faixa esportiva</h3>
+        
+        <div class="mt-auto flex justify-between items-center pt-4 border-t border-[var(--card-border)] relative z-10">
+          <div class="flex flex-col">
+            <span class="text-[0.55rem] text-[var(--accent-reward)] uppercase tracking-wider font-bold">OFERTA!</span>
+            <div class="font-display text-2xl text-[var(--text-primary)] leading-none mt-0.5">
+              50 <span class="text-[0.65rem] font-sans font-semibold text-[var(--text-muted)]">pts</span>
+              <span class="text-xs text-[var(--text-muted)] line-through ml-1">320</span>
             </div>
           </div>
-        </article>
-      </div>
+          <button onclick="mostrarToast('Kit camiseta + faixa esportiva')" 
+                  class="px-5 py-2.5 rounded-full text-xs font-extrabold bg-[var(--accent)] text-[var(--bg-b)] shadow-[0_0_15px_var(--accent-glow)] hover:scale-105 active:scale-95 transition-all">
+            Resgatar
+          </button>
+        </div>
+      </article>
 
     </div>
   </main>
-</div>
 
+  <nav class="fixed bottom-0 left-0 w-full glass border-t border-[var(--card-border)] z-50 pt-2 pb-[calc(env(safe-area-inset-bottom)+8px)]">
+    <div class="max-w-[720px] mx-auto flex justify-around items-center h-14 px-4">
+      <a href="/index.html" class="flex flex-col items-center gap-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+        <i data-lucide="home" width="22"></i>
+        <span class="text-[0.6rem] font-bold">Início</span>
+      </a>
+      
+      <a href="src/pages/rewards.html" class="flex flex-col items-center gap-1 text-[var(--accent)] relative">
+        <div class="absolute -top-3 w-1 h-1 rounded-full bg-[var(--accent)]" style="box-shadow: 0 0 8px var(--accent-glow)"></div>
+        <i data-lucide="gift" width="22"></i>
+        <span class="text-[0.6rem] font-bold">Prêmios</span>
+      </a>
+      
+      <a href="settings.html" class="flex flex-col items-center gap-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+        <i data-lucide="settings" width="22"></i>
+        <span class="text-[0.6rem] font-bold">Ajustes</span>
+      </a>
+    </div>
+  </nav>
 
-<!-- Navbar Mobile — fixed-bottom d-lg-none: some no desktop -->
-<nav class="bottom-nav fixed-bottom d-flex d-lg-none">
-  <a href="/index.html" class="nav-link flex-fill d-flex flex-column align-items-center py-2">
-    <img src="../assets/svgs/home.svg" width="22" height="22" alt="">
-    <span>Início</span>
-  </a>
-  <a href="#" class="nav-link active flex-fill d-flex flex-column align-items-center py-2">
-    <img src="../assets/svgs/rewards.svg" width="22" height="22" alt="">
-    <span>Recompensas</span>
-  </a>
-  <a href="#" class="nav-link flex-fill d-flex flex-column align-items-center py-2">
-    <img src="../assets/svgs/settings.svg" width="22" height="22" alt="">
-    <span>Ajustes</span>
-  </a>
-</nav>
-
-
-<!-- Toast de confirmação -->
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index:9999;">
-  <div id="toastRecompensa" class="toast align-items-center text-white border-0 rounded-3"
-       style="background:#00BFDF;" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body fw-semibold" id="toastMensagem">Recompensa resgatada!</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto"
-              data-bs-dismiss="toast" aria-label="Fechar"></button>
+  <div id="toastNotificacao" class="fixed bottom-24 left-1/2 -translate-x-1/2 glass border border-[var(--accent)] px-5 py-3.5 rounded-2xl flex items-center gap-3 transition-all duration-500 opacity-0 translate-y-6 pointer-events-none z-[100] shadow-[0_8px_30px_var(--accent-glow)] w-[90%] max-w-[400px]">
+    <div class="w-8 h-8 rounded-full accent-bg flex items-center justify-center shrink-0">
+      <i data-lucide="check" class="text-[var(--accent)] w-5 h-5"></i>
+    </div>
+    <div>
+      <div class="text-[0.65rem] font-bold uppercase tracking-wider text-[var(--accent)] mb-0.5">Sucesso</div>
+      <div class="text-sm font-semibold text-[var(--text-primary)] leading-tight" id="toastMensagem">Recompensa resgatada!</div>
     </div>
   </div>
-</div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Inicializa os ícones do Lucide
+      lucide.createIcons();
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  function mostrarToast(nome) {
-    document.getElementById('toastMensagem').textContent = '"' + nome + '" resgatado!';
-    new bootstrap.Toast(document.getElementById('toastRecompensa')).show();
-  }
-</script>
+      // 2. Cria as partículas da atmosfera no fundo (reaproveitado do index)
+      const PARTICLES = [
+        { id: 0,  left: '8%',  delay: '0s',    dur: '14s' },
+        { id: 1,  left: '18%', delay: '2.1s',  dur: '11s' },
+        { id: 2,  left: '29%', delay: '4.5s',  dur: '16s' },
+        { id: 3,  left: '41%', delay: '1.3s',  dur: '13s' },
+        { id: 4,  left: '53%', delay: '6.2s',  dur: '15s' },
+        { id: 5,  left: '64%', delay: '3.7s',  dur: '12s' }
+      ];
+
+      const particlesContainer = document.getElementById('particles-container');
+      PARTICLES.forEach(p => {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = p.left;
+        particle.style.bottom = '0';
+        particle.style.setProperty('--delay', p.delay);
+        particle.style.setProperty('--dur', p.dur);
+        particlesContainer.appendChild(particle);
+      });
+    });
+
+    // 3. Lógica do Toast Customizado
+    let toastTimeout;
+    function mostrarToast(nomeItem) {
+      const toast = document.getElementById('toastNotificacao');
+      const mensagem = document.getElementById('toastMensagem');
+      
+      mensagem.textContent = `Você resgatou: ${nomeItem}`;
+      
+      // Reseta a animação se já estiver aberta
+      clearTimeout(toastTimeout);
+      
+      // Mostra
+      toast.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      // Esconde após 3.5s
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+      }, 3500);
+    }
+  </script>
 </body>
 </html>
